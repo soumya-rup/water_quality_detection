@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Water Quality Detection</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2 class="mt-5">Water Quality Detection</h2>
+        <form action="/predict" method="post">
+            <div class="form-group">
+                <label for="ph">pH</label>
+                <input type="text" class="form-control" id="ph" name="ph" required>
+            </div>
+            <div class="form-group">
+                <label for="hardness">Hardness</label>
+                <input type="text" class="form-control" id="hardness" name="hardness" required>
+            </div>
+            <div class="form-group">
+                <label for="solids">Solids</label>
+                <input type="text" class="form-control" id="solids" name="solids" required>
+            </div>
+            <div class="form-group">
+                <label for="chloramines">Chloramines</label>
+                <input type="text" class="form-control" id="chloramines" name="chloramines" required>
+            </div>
+            <div class="form-group">
+                <label for="sulfate">Sulfate</label>
+                <input type="text" class="form-control" id="sulfate" name="sulfate" required>
+            </div>
+            <div class="form-group">
+                <label for="conductivity">Conductivity</label>
+                <input type="text" class="form-control" id="conductivity" name="conductivity" required>
+            </div>
+            <div class="form-group">
+                <label for="organic_carbon">Organic Carbon</label>
+                <input type="text" class="form-control" id="organic_carbon" name="organic_carbon" required>
+            </div>
+            <div class="form-group">
+                <label for="trihalomethanes">Trihalomethanes</label>
+                <input type="text" class="form-control" id="trihalomethanes" name="trihalomethanes" required>
+            </div>
+            <div class="form-group">
+                <label for="turbidity">Turbidity</label>
+                <input type="text" class="form-control" id="turbidity" name="turbidity" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Predict</button>
+        </form>
+        {% if prediction_text %}
+            <h3 class="mt-3">{{ prediction_text }}</h3>
+        {% endif %}
+    </div>
+</body>
+</html>
