@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Report</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/report.css') }}">
+</head>
+<body>
+    <nav>
+        <a href="/">Home</a> |
+        <a href="/testing">Testing</a> |
+        <a href="/report">Report</a> |
+        <a href="/training">Training</a>
+    </nav>
+    <hr>
+    <h1>Model Report</h1>
+    <table border="1">
+        <tr>
+            <th>Metric</th>
+            <th>Value</th>
+        </tr>
+        <tr>
+            <td>Model</td>
+            <td>{{ model_name }}</td>
+        </tr>
+        <tr>
+            <td>Accuracy</td>
+            <td>{{ accuracy }}</td>
+        </tr>
+        <tr>
+            <td>Precision</td>
+            <td>{{ precision }}</td>
+        </tr>
+        <tr>
+            <td>F1 Score</td>
+            <td>{{ f1_score }}</td>
+        </tr>
+        <tr>
+            <td>prediction</td>
+            <td>
+                {% if pred == 1 %}
+                    Safe for Consumption
+                {% else %}
+                    Not Safe for Consumption
+                {% endif %}
+                
+            </td>
+        </tr>
+    </table>
+    <a href="/testing">Test Again</a>
+</body>
+</html>

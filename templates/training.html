@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Training</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/training.css') }}">
+</head>
+<body>
+    <nav>
+        <a href="/">Home</a> |
+        <a href="/testing">Testing</a> |
+        <a href="/report">Report</a> |
+        <a href="/training">Training</a>
+    </nav>
+    <hr>
+    <h1>Model Training</h1>
+    <form action="/training" method="post" enctype="multipart/form-data">
+        <label>Upload CSV File:</label>
+        <input type="file" name="file" required><br>
+        <label>Select Algorithm:</label>
+        <select name="model" required>
+            <option value="RandomForest">Random Forest</option>
+            <option value="LogisticRegression">Logistic Regression</option>
+            <option value="SVM">SVM</option>
+            <option value="DecisionTree">Decision Tree</option>
+            <option value="NaiveBayes">Naive Bayes</option>
+            <option value="KNN">KNN</option>
+        </select><br>
+        <button type="submit">Train</button>
+    </form>
+</body>
+</html>

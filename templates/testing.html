@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Testing</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/testing.css') }}">
+</head>
+<body>
+    <nav>
+        <a href="/">Home</a> |
+        <a href="/testing">Testing</a> |
+        <a href="/report">Report</a> |
+        <a href="/training">Training</a>
+    </nav>
+    <h1>Water Potability Testing</h1>
+    <form action="/report" method="post">
+        <label>pH:</label>
+        <input type="text" name="pH" required><br>
+        <label>Hardness:</label>
+        <input type="text" name="Hardness" required><br>
+        <label>Solids:</label>
+        <input type="text" name="Solids" required><br>
+        <label>Chloramines:</label>
+        <input type="text" name="Chloramines" required><br>
+        <label>Sulfate:</label>
+        <input type="text" name="Sulfate" required><br>
+        <label>Conductivity:</label>
+        <input type="text" name="Conductivity" required><br>
+        <label>Organic Carbon:</label>
+        <input type="text" name="Organic_carbon" required><br>
+        <label>Trihalomethanes:</label>
+        <input type="text" name="Trihalomethanes" required><br>
+        <label>Turbidity:</label>
+        <input type="text" name="Turbidity" required><br>
+        <label>Choose a Model:</label>
+        <select name="model" required>
+            <option value="RandomForest">Random Forest</option>
+            <option value="LogisticRegression">Logistic Regression</option>
+            <option value="SVM">SVM</option>
+            <option value="DecisionTree">Decision Tree</option>
+            <option value="NaiveBayes">Naive Bayes</option>
+            <option value="KNN">KNN</option>
+        </select><br>
+        <button type="submit">Test</button>
+    </form>
+</body>
+</html>
