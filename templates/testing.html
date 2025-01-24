@@ -12,7 +12,7 @@
         <a href="/training">Training</a>
     </nav>
     <h1>Water Potability Testing</h1>
-    <form action="/report" method="post">
+    <form action="/testing" method="post">
         <label>pH:</label>
         <input type="text" name="pH" required><br>
         <label>Hardness:</label>
@@ -42,5 +42,14 @@
         </select><br>
         <button type="submit">Test</button>
     </form>
+
+    <!-- {% if result %}
+    <hr>
+    <h2>Prediction Result: {{ result }}</h2>
+    <form action="/report" method="get">
+        <input type="hidden" name="model" value="{{ selected_model }}">
+        <button type="submit">View Report</button>
+    </form>
+    {% endif %} -->
 </body>
 </html>
