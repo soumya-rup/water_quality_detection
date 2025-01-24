@@ -1,9 +1,9 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template,session,url_for,redirect
 import pandas as pd
 import pickle
 
 app = Flask(__name__)
-pred=1
+
 # Home page
 @app.route('/')
 def home():
@@ -14,7 +14,17 @@ def home():
 def testing():
     if request.method == 'POST':
         # Get input values from form
-        features = [float(request.form[f'feature{i}']) for i in range(1, 10)]
+        features = [
+            float(request.form['pH']),
+            float(request.form['Hardness']),
+            float(request.form['Solids']),
+            float(request.form['Chloramines']),
+            float(request.form['Sulfate']),
+            float(request.form['Conductivity']),
+            float(request.form['Organic_carbon']),
+            float(request.form['Trihalomethanes']),
+            float(request.form['Turbidity'])
+        ]
         model_name = request.form['model']
 
         # Load selected model
@@ -23,19 +33,21 @@ def testing():
 
         # Make prediction
         pred = model.predict([features])[0]
-        result = "Safe for consumption" if pred == 1 else "Not safe for consumption"
+        
+        # result = "Safe for consumption" if pred == 1 else "Not safe for consumption"
 
-        return render_template('testing.html', result=result, selected_model=model_name)
+        return redirect(url_for('report', pred=pred, model=model_name))
     
 
-    return render_template('testing.html', result=None)
+    return render_template('testing.html')
 
 # Report page
-@app.route('/report', methods=['POST'])
+@app.route('/report', methods=['GET'])
 def report():
     # Get selected model
-    model_name = request.form['model']
-
+    model_name = request.args.get('model')
+    pred = int(request.args.get('pred'))
+    
     # Load model metrics
     metrics = pd.read_csv('model_metrics.csv')
     model_metrics = metrics[metrics['Model'] == model_name].iloc[0]
@@ -44,8 +56,8 @@ def report():
     accuracy = model_metrics['Accuracy']
     precision = model_metrics['Precision']
     f1_score = model_metrics['F1_Score']
-
-    
+   
+   
 
     return render_template('report.html', accuracy=accuracy, precision=precision, f1_score=f1_score, model_name=model_name,pred=pred)
 
